@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vueapiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="article">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="header" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="body" Type="varchar" MaxLength="8000" Nullable="false" />
+    <Property Name="createtime" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="delettime" Type="datetime" />
+    <Property Name="userid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="article_message">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="articleid" Type="int" Nullable="false" />
+    <Property Name="messageid" Type="int" />
+  </EntityType>
+  <EntityType Name="buy">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="cartid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cart">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="namedetail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="member">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="weblevel" Type="int" Nullable="false" />
+    <Property Name="weblevelname" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="discount" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="message">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="body" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="userid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="test">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="testname" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="uermember">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="int" Nullable="false" />
+    <Property Name="memberid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="adress" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="account" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="hobby" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_article_message_article">
+    <End Role="article" Type="Self.article" Multiplicity="1" />
+    <End Role="article_message" Type="Self.article_message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="article">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="article_message">
+        <PropertyRef Name="articleid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_article_message_message">
+    <End Role="message" Type="Self.message" Multiplicity="0..1" />
+    <End Role="article_message" Type="Self.article_message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="message">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="article_message">
+        <PropertyRef Name="messageid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_buy_cart">
+    <End Role="cart" Type="Self.cart" Multiplicity="1" />
+    <End Role="buy" Type="Self.buy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cart">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="buy">
+        <PropertyRef Name="cartid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_buy_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="buy" Type="Self.buy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="buy">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_article_dbo_user_id">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="article" Type="Self.article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="article">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_message_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="message" Type="Self.message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="message">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_uermember_member">
+    <End Role="member" Type="Self.member" Multiplicity="1" />
+    <End Role="uermember" Type="Self.uermember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="member">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="uermember">
+        <PropertyRef Name="memberid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_uermember_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="uermember" Type="Self.uermember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="uermember">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="vueapiModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="article" EntityType="Self.article" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="article_message" EntityType="Self.article_message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="buy" EntityType="Self.buy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cart" EntityType="Self.cart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="member" EntityType="Self.member" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="message" EntityType="Self.message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="test" EntityType="Self.test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="uermember" EntityType="Self.uermember" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_article_message_article" Association="Self.FK_article_message_article">
+      <End Role="article" EntitySet="article" />
+      <End Role="article_message" EntitySet="article_message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_article_message_message" Association="Self.FK_article_message_message">
+      <End Role="message" EntitySet="message" />
+      <End Role="article_message" EntitySet="article_message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_buy_cart" Association="Self.FK_buy_cart">
+      <End Role="cart" EntitySet="cart" />
+      <End Role="buy" EntitySet="buy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_buy_user" Association="Self.FK_buy_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="buy" EntitySet="buy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_article_dbo_user_id" Association="Self.FK_dbo_article_dbo_user_id">
+      <End Role="user" EntitySet="user" />
+      <End Role="article" EntitySet="article" />
+    </AssociationSet>
+    <AssociationSet Name="FK_message_user" Association="Self.FK_message_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="message" EntitySet="message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_uermember_member" Association="Self.FK_uermember_member">
+      <End Role="member" EntitySet="member" />
+      <End Role="uermember" EntitySet="uermember" />
+    </AssociationSet>
+    <AssociationSet Name="FK_uermember_user" Association="Self.FK_uermember_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="uermember" EntitySet="uermember" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

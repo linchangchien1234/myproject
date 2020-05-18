@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="vueapiModelStoreContainer" CdmEntityContainer="vueapiEntities1">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="vueapiModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="articles">
+      <EntityTypeMapping TypeName="vueapiModel.article">
+        <MappingFragment StoreEntitySet="article">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="header" ColumnName="header" />
+          <ScalarProperty Name="body" ColumnName="body" />
+          <ScalarProperty Name="createtime" ColumnName="createtime" />
+          <ScalarProperty Name="delettime" ColumnName="delettime" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="article_message">
+      <EntityTypeMapping TypeName="vueapiModel.article_message">
+        <MappingFragment StoreEntitySet="article_message">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="articleid" ColumnName="articleid" />
+          <ScalarProperty Name="messageid" ColumnName="messageid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="messages">
+      <EntityTypeMapping TypeName="vueapiModel.message">
+        <MappingFragment StoreEntitySet="message">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="body" ColumnName="body" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="vueapiModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="adress" ColumnName="adress" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="account" ColumnName="account" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="hobby" ColumnName="hobby" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="carts">
+      <EntityTypeMapping TypeName="vueapiModel.cart">
+        <MappingFragment StoreEntitySet="cart">
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="namedetail" ColumnName="namedetail" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="members">
+      <EntityTypeMapping TypeName="vueapiModel.member">
+        <MappingFragment StoreEntitySet="member">
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="weblevelname" ColumnName="weblevelname" />
+          <ScalarProperty Name="weblevel" ColumnName="weblevel" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="uermembers">
+      <EntityTypeMapping TypeName="vueapiModel.uermember">
+        <MappingFragment StoreEntitySet="uermember">
+          <ScalarProperty Name="memberid" ColumnName="memberid" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="buys">
+      <EntityTypeMapping TypeName="vueapiModel.buy">
+        <MappingFragment StoreEntitySet="buy">
+          <ScalarProperty Name="cartid" ColumnName="cartid" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tests">
+      <EntityTypeMapping TypeName="vueapiModel.test">
+        <MappingFragment StoreEntitySet="test">
+          <ScalarProperty Name="testname" ColumnName="testname" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
